@@ -724,9 +724,9 @@ namespace Termie
                     for (int c = 1; c <= iColCount; ++c)
                     {
                         Data += rng.Cells[r, c].Value2.ToString();
-                        Data += Token.numToken;
+                        Data += Token.seriesToken;
                     }
-                    Data += Token.seriesToken;
+                    Data += Token.lineToken;
                 }
 
                 wb.Close(true);

@@ -206,5 +206,23 @@ namespace Termie
                 _serialPort.Write(data + lineEnding);
             }
         }
+
+        public void SendByFloat(byte[] data)
+        {
+            if (IsOpen)
+            {
+                string lineEnding = "";
+                switch (Settings.Option.AppendToSend)
+                {
+                    case Settings.Option.AppendType.AppendCR:
+                        lineEnding = "\r"; break;
+                    case Settings.Option.AppendType.AppendLF:
+                        lineEnding = "\n"; break;
+                    case Settings.Option.AppendType.AppendCRLF:
+                        lineEnding = "\r\n"; break;
+                }
+                _serialPort.Write(data + lineEnding);
+            }
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace Termie
                     autoInc++;
                 }
                 else {
-                        num += c;
+                    num += c;
                 }
             }
         }

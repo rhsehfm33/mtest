@@ -71,6 +71,53 @@ namespace Termie
 			base.OnClosed(e);
 		}
 
+        ///  <summary>
+        ///     output string to xlsx file 
+        /// </summary>
+        public void Write_ExcelData(string stringout)
+        {
+            Excel.Application excelApp = null;
+            Excel.Workbook wb = null;
+            Excel.Worksheet ws = null;
+
+            try
+            {
+                // Excel 첫번째 워크시트 가져오기
+                excelApp = new Excel.Application();
+                wb = excelApp.Workbooks.Add();
+                ws = wb.Worksheets.get_Item(1) as Excel.Worksheet;
+
+                string num = "";
+                int r = 1, c = 1;
+                foreach (char n in stringout)
+                {
+                   if(n == Token.seriesToken) {
+                        ws.Cells[r, c] = float.Parse(num);
+                        num = "";
+                        c++;
+                    }
+                    else if(n == Token.lineToken) {
+                        num = "";
+                        r++;
+                        c = 1;
+                    }
+                    else {
+                        num += n;
+                    }
+                }
+                wb.SaveAs(Settings.Option.LogFileName, Excel.XlFileFormat.xlWorkbookNormal);
+                wb.Close(true);
+                excelApp.Quit();
+            }
+            finally
+            {
+                // Clean up
+                ReleaseExcelObject(ws);
+                ReleaseExcelObject(wb);
+                ReleaseExcelObject(excelApp);
+            }
+        }
+
 		/// <summary>
 		/// output string to log file
 		/// </summary>
@@ -435,6 +482,7 @@ namespace Termie
         /// <param name="data">incoming data</param>
         public void OnDataReceived(string dataIn)
         {
+            bool isExcel = dataIn.Substring(0, 1) == "e" ? true : false;
             //Handle multi-threading
             if (InvokeRequired)
             {
@@ -453,11 +501,13 @@ namespace Termie
                 String strTemp = "Excel!!";
                 logFile_writeLine(AddData(strTemp).Str);
 
+
                 // 그래프 띄우기
                 Form3 form3 = new Form3(dataIn);
                 form3.ShowDialog();
+                Write_ExcelData(dataIn);
+                logFile_writeLine(dataIn);
 
-                WriteLogFile(ref dataIn);
             } else // 일반 텍스트인경우
             {   
                 dataIn = dataIn.Remove(0, 1);
@@ -465,7 +515,7 @@ namespace Termie
             }
 
             // if we have data remaining, add a partial line
-            if (dataIn.Length > 0)
+            if (dataIn.Length > 0 && !isExcel)
 			{
 				partialLine = AddData(dataIn);
 			}

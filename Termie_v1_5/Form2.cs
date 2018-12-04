@@ -21,7 +21,7 @@ namespace Termie
 
             int found = 0;
             string[] portList = com.GetAvailablePorts();
-            for (int i=0; i<portList.Length; ++i)
+            for (int i = 0; i < portList.Length; ++i)
             {
                 string name = portList[i];
                 comboBox1.Items.Add(name);
@@ -36,7 +36,7 @@ namespace Termie
                 38400,56000,57600,115200,128000,256000,0
             };
             found = 0;
-            for (int i=0; baudRates[i] != 0; ++i)
+            for (int i = 0; baudRates[i] != 0; ++i)
             {
                 comboBox2.Items.Add(baudRates[i].ToString());
                 if (baudRates[i] == Settings.Port.BaudRate)
@@ -88,74 +88,84 @@ namespace Termie
             checkBox2.Checked = Settings.Option.MonoFont;
             checkBox3.Checked = Settings.Option.LocalEcho;
             checkBox4.Checked = Settings.Option.StayOnTop;
-			checkBox5.Checked = Settings.Option.FilterUseCase;
+            checkBox5.Checked = Settings.Option.FilterUseCase;
 
-			textBox1.Text = Settings.Option.LogFileName;
-		}
+            LogFileBox.Text = Settings.Option.LogFileName;
+        }
 
-		// OK
-		private void button1_Click(object sender, EventArgs e)
-		{
-			Settings.Port.PortName = comboBox1.Text;
-			Settings.Port.BaudRate = Int32.Parse(comboBox2.Text);
-			Settings.Port.DataBits = comboBox3.SelectedIndex + 5;
-			Settings.Port.Parity = (Parity)comboBox4.SelectedIndex;
-			Settings.Port.StopBits = (StopBits)comboBox5.SelectedIndex;
-			Settings.Port.Handshake = (Handshake)comboBox6.SelectedIndex;
+        // OK
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Settings.Port.PortName = comboBox1.Text;
+            Settings.Port.BaudRate = Int32.Parse(comboBox2.Text);
+            Settings.Port.DataBits = comboBox3.SelectedIndex + 5;
+            Settings.Port.Parity = (Parity)comboBox4.SelectedIndex;
+            Settings.Port.StopBits = (StopBits)comboBox5.SelectedIndex;
+            Settings.Port.Handshake = (Handshake)comboBox6.SelectedIndex;
 
-			if (radioButton2.Checked)
-				Settings.Option.AppendToSend = Settings.Option.AppendType.AppendCR;
-			else if (radioButton3.Checked)
-				Settings.Option.AppendToSend = Settings.Option.AppendType.AppendLF;
-			else if (radioButton4.Checked)
-				Settings.Option.AppendToSend = Settings.Option.AppendType.AppendCRLF;
-			else
-				Settings.Option.AppendToSend = Settings.Option.AppendType.AppendNothing;
+            if (radioButton2.Checked)
+                Settings.Option.AppendToSend = Settings.Option.AppendType.AppendCR;
+            else if (radioButton3.Checked)
+                Settings.Option.AppendToSend = Settings.Option.AppendType.AppendLF;
+            else if (radioButton4.Checked)
+                Settings.Option.AppendToSend = Settings.Option.AppendType.AppendCRLF;
+            else
+                Settings.Option.AppendToSend = Settings.Option.AppendType.AppendNothing;
 
-			Settings.Option.HexOutput = checkBox1.Checked;
-			Settings.Option.MonoFont = checkBox2.Checked;
-			Settings.Option.LocalEcho = checkBox3.Checked;
-			Settings.Option.StayOnTop = checkBox4.Checked;
-			Settings.Option.FilterUseCase = checkBox5.Checked;
+            Settings.Option.HexOutput = checkBox1.Checked;
+            Settings.Option.MonoFont = checkBox2.Checked;
+            Settings.Option.LocalEcho = checkBox3.Checked;
+            Settings.Option.StayOnTop = checkBox4.Checked;
+            Settings.Option.FilterUseCase = checkBox5.Checked;
 
-			Settings.Option.LogFileName = textBox1.Text;
+            Settings.Option.LogFileName = LogFileBox.Text;
 
-			CommPort com = CommPort.Instance;
-			com.Open();
+            CommPort com = CommPort.Instance;
+            com.Open();
 
-			Settings.Write();
+            Settings.Write();
 
-			Close();
-		}
+            Close();
+        }
 
-		// Cancel
+        // Cancel
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-		private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             Settings.Option.LogFileName = "";
 
             SaveFileDialog fileDialog1 = new SaveFileDialog();
 
             fileDialog1.Title = "Save Log As";
-            fileDialog1.Filter = "Log files (*.log)|*.log|All files (*.*)|*.*";
-            fileDialog1.FilterIndex = 2;
+            fileDialog1.Filter = "Excel files (*.xls)|*.xls";
+            fileDialog1.FilterIndex = 1;
             fileDialog1.RestoreDirectory = true;
-			fileDialog1.FileName = Settings.Option.LogFileName;
+            fileDialog1.FileName = Settings.Option.LogFileName;
 
             if (fileDialog1.ShowDialog() == DialogResult.OK)
             {
-				textBox1.Text = fileDialog1.FileName;
-				if (File.Exists(textBox1.Text))
-					File.Delete(textBox1.Text);
-			}
+                LogFileBox.Text = fileDialog1.FileName;
+                if (File.Exists(LogFileBox.Text))
+                    File.Delete(LogFileBox.Text);
+            }
             else
             {
-				textBox1.Text = "";
+                LogFileBox.Text = "";
             }
+        }
+
+        private void LogFileBoxChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

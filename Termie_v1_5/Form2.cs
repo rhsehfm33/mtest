@@ -90,7 +90,7 @@ namespace Termie
             checkBox4.Checked = Settings.Option.StayOnTop;
 			checkBox5.Checked = Settings.Option.FilterUseCase;
 
-			textBox1.Text = Settings.Option.LogFileName;
+			LogFileBox.Text = Settings.Option.LogFileName;
 		}
 
 		// OK
@@ -118,7 +118,7 @@ namespace Termie
 			Settings.Option.StayOnTop = checkBox4.Checked;
 			Settings.Option.FilterUseCase = checkBox5.Checked;
 
-			Settings.Option.LogFileName = textBox1.Text;
+			Settings.Option.LogFileName = LogFileBox.Text;
 
 			CommPort com = CommPort.Instance;
 			com.Open();
@@ -148,17 +148,22 @@ namespace Termie
 
             if (fileDialog1.ShowDialog() == DialogResult.OK)
             {
-				textBox1.Text = fileDialog1.FileName;
-				if (File.Exists(textBox1.Text))
-					File.Delete(textBox1.Text);
+				LogFileBox.Text = fileDialog1.FileName;
+				if (File.Exists(LogFileBox.Text))
+					File.Delete(LogFileBox.Text);
 			}
             else
             {
-				textBox1.Text = "";
+				LogFileBox.Text = "";
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void LogFileBoxChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
         {
 
         }

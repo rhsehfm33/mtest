@@ -82,13 +82,16 @@ namespace Termie
 
             try
             {
-                // Excel 첫번째 워크시트 가져오기
+                int r = 1, c = 1;
+                // Excel 첫번째 워크시트 마지막 번째 가져오기. lms 추가함.
                 excelApp = new Excel.Application();
-                wb = excelApp.Workbooks.Add();
+                wb = excelApp.Workbooks.Open(Settings.Option.LogFileName);
                 ws = wb.Worksheets.get_Item(1) as Excel.Worksheet;
 
+                Excel.Range last = ws.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
+                r = last.Row;
                 string num = "";
-                int r = 1, c = 1;
+                
                 foreach (char n in stringout)
                 {
                    if(n == Token.seriesToken) {
@@ -124,7 +127,7 @@ namespace Termie
 		/// <param name="stringOut">string to output</param>
 		public void logFile_writeLine(string stringOut)
 		{
-			if (Settings.Option.LogFileName != "")
+            if (Settings.Option.LogFileName != "")
 			{
 				Stream myStream = File.Open(Settings.Option.LogFileName,
 					FileMode.Append, FileAccess.Write, FileShare.Read);

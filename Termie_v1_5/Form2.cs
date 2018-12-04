@@ -141,7 +141,7 @@ namespace Termie
             SaveFileDialog fileDialog1 = new SaveFileDialog();
 
             fileDialog1.Title = "Save Log As";
-            fileDialog1.Filter = "Log files (*.log)|*.log|All files (*.*)|*.*|Excel files (*.xls)|*.xls";
+            fileDialog1.Filter = "Log files (*.log)|*.log|Excel files (*.xls)|*.xls|All files (*.*)|*.*";
             fileDialog1.FilterIndex = 2;
             fileDialog1.RestoreDirectory = true;
 			fileDialog1.FileName = Settings.Option.LogFileName;

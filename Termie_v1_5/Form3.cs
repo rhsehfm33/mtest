@@ -11,7 +11,7 @@ namespace Termie
 {
     public static class Token       // 토큰을 정의해 놓은 클래스. c++의 #defin 역할.
     {
-        public const char seriesToken = '\t';
+        public const char seriesToken = ' ';
         public const char lineToken = '\n';
     }
     public partial class Form3 : Form

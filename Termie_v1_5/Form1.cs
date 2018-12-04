@@ -108,7 +108,7 @@ namespace Termie
                         num += n;
                     }
                 }
-                wb.SaveAs(Settings.Option.LogFileName, Excel.XlFileFormat.xlWorkbookNormal);
+                wb.Save();
                 wb.Close(true);
                 excelApp.Quit();
             }
@@ -123,6 +123,7 @@ namespace Termie
 
 		/// <summary>
 		/// output string to log file
+		/// </summary>
 		/// </summary>
 		/// <param name="stringOut">string to output</param>
 		public void logFile_writeLine(string stringOut)

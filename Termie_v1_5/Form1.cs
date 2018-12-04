@@ -416,7 +416,7 @@ namespace Termie
                 {
                     StringOut = StringOut + String.Format("{0:X2} ", (int)c);
                 }
-                else if (c < 32 && c != 9)
+                else if (c < 32 && c != 9 && c != '\n' && c != '\t')    // 이 부분 차후 수정 필요. 조건문이 너무 많음.
                 {
                     StringOut = StringOut + "<" + charNames[c] + ">";
 
@@ -443,18 +443,18 @@ namespace Termie
 		/// <returns></returns>
 		private Line AddData(String StringIn)
 		{
-			String StringOut = PrepareData(StringIn);
+			String StringOut = PrepareData(StringIn); 
 
 			// if we have a partial line, add to it.
 			if (partialLine != null)
 			{
 				// tack it on
-				partialLine.Str = partialLine.Str + StringOut;
+				partialLine.Str = partialLine.Str + StringIn;
 				outputList_Update(partialLine);
 				return partialLine;
 			}
 
-			return outputList_Add(StringOut, receivedColor);
+			return outputList_Add(StringIn, receivedColor);
 		}
 
 		// delegate used for Invoke
@@ -506,8 +506,7 @@ namespace Termie
                 Form3 form3 = new Form3(dataIn);
                 form3.ShowDialog();
                 Write_ExcelData(dataIn);
-                logFile_writeLine(dataIn);
-
+                WriteLogFile(ref dataIn);
             } else // 일반 텍스트인경우
             {   
                 dataIn = dataIn.Remove(0, 1);
@@ -515,11 +514,10 @@ namespace Termie
             }
 
             // if we have data remaining, add a partial line
-            if (dataIn.Length > 0 && !isExcel)
-			{
+            if (dataIn.Length > 0) {
 				partialLine = AddData(dataIn);
 			}
-
+            
 			// restore scrolling
 			scrolling = saveScrolling;
 			outputList_Scroll();

@@ -169,39 +169,37 @@ namespace Termie
             float fTime = (float)m_sw.ElapsedMilliseconds / 1000.0F;
 
             BreathGraph.Series[0].Points.AddXY(fTime, packet.m_DataIn[(int)PacketDataType.eBreath]);
+            RPMGraph.Series[0].Points.AddXY(fTime, packet.m_DataIn[(int)PacketDataType.eRPM]);
+            PressureGraph.Series[0].Points.AddXY(fTime, packet.m_DataIn[(int)PacketDataType.ePressure]);
 
-            //BreathGraph.Series[0].Points.AddXY(
-
-
-            //int series = 0;
-            //string num = "";        // 엑셀로부터 읽은 하나의 숫자 값(float). 
-            //foreach (char c in str)
-            //{
-            //    if (c == Token.seriesToken)
-            //    {    // 라인 문자일 경우 line 변수를 올려서 시리즈의 인덱스 값 증가시킴.
-            //        graph.Series[series].Points.AddXY(autoInc, float.Parse(num)); //온전히 한 셀에 숫자를 다 입력받으면 그래프에 입력.
-            //        num = "";
-            //        series++;
-            //    }
-            //    else if (c == Token.lineToken)
-            //    {
-            //        series = 0;
-            //        autoInc++;
-            //    }
-            //    else
-            //    {
-            //        num += c;
-            //    }
-            //}
+            BreathGraph.Invalidate();
+            RPMGraph.Invalidate();
+            PressureGraph.Invalidate();
         }
         #endregion
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Packet pac = new Packet();
+
+            Random r = new Random();
+
+            pac.m_DataIn[0] = (float)r.NextDouble() * 10.0F;
+            pac.m_DataIn[1] = (float)r.NextDouble() * 10.0F;
+            pac.m_DataIn[2] = (float)r.NextDouble() * 10.0F;
+
+            DrawGraph(pac);
+        }
+
+
+
 
         #region Ghong
 
         #endregion
 
         #region MinSeong
-        
+
         #endregion
     }
 }

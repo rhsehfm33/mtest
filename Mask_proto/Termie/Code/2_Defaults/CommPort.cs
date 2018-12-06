@@ -29,6 +29,7 @@ namespace Termie
         SerialPort _serialPort;
         Thread _readThread;
         volatile bool _keepReading;
+        volatile bool _bRunning;
 
         //begin Singleton pattern
         static readonly CommPort instance = new CommPort();
@@ -44,6 +45,7 @@ namespace Termie
             _serialPort = new SerialPort();
             _readThread = null;
             _keepReading = false;
+            _bRunning = false;
         }
 
         public static CommPort Instance
@@ -88,7 +90,7 @@ namespace Termie
             Packet SerialIn = new Packet();
             while (_keepReading)
             {
-                if (_serialPort.IsOpen) // 여기에 && bRunning이 들어가야됨       - 근홍
+                if (_serialPort.IsOpen && _bRunning)
                 {
                     byte[] readBuffer = new byte[_serialPort.ReadBufferSize + 1];
                     try
@@ -146,6 +148,7 @@ namespace Termie
             }
             catch (Exception ex)
             {
+                string tmp = ex.ToString();
                 StatusChanged(String.Format("{0}", ex.ToString()));
             }
 
@@ -227,6 +230,16 @@ namespace Termie
                 //}
                 _serialPort.Write(data + lineEnding);
             }
+        }
+
+        public void Button_Click()
+        {
+            _bRunning = !_bRunning;
+        }
+
+        public bool IsRunning()
+        {
+            return _bRunning;
         }
     }
 }

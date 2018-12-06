@@ -27,7 +27,7 @@ namespace Termie
         {
             public static bool StayOnTop = false;
             public static string LogFilePath = Application.StartupPath;
-
+            public static int Interval = 5;
             //public enum AppendType
             //{
             //    AppendNothing,
@@ -57,6 +57,7 @@ namespace Termie
 
             Option.StayOnTop = bool.Parse(ini.ReadValue("Option", "StayOnTop", Option.StayOnTop.ToString()));
             Option.LogFilePath = ini.ReadValue("Option", "LogFilePath", Option.LogFilePath);
+            Option.Interval = ini.ReadValue("Option", "Interval", Option.Interval);
             //Option.AppendToSend = (Option.AppendType)Enum.Parse(typeof(Option.AppendType), ini.ReadValue("Option", "AppendToSend", Option.AppendToSend.ToString()));
             //Option.HexOutput = bool.Parse(ini.ReadValue("Option", "HexOutput", Option.HexOutput.ToString()));
             //Option.MonoFont = bool.Parse(ini.ReadValue("Option", "MonoFont", Option.MonoFont.ToString()));
@@ -78,6 +79,7 @@ namespace Termie
 
             ini.WriteValue("Option", "StayOnTop", Option.StayOnTop.ToString());
             ini.WriteValue("Option", "LogFilePath", Option.LogFilePath);
+            ini.WriteValue("Option", "Interval", Option.Interval);
             //ini.WriteValue("Option", "AppendToSend", Option.AppendToSend.ToString());
             //ini.WriteValue("Option", "HexOutput", Option.HexOutput.ToString());
             //ini.WriteValue("Option", "MonoFont", Option.MonoFont.ToString());

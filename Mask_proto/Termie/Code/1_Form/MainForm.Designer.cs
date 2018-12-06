@@ -39,15 +39,16 @@
             this.Col1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SettingButton = new System.Windows.Forms.Button();
+            this.StartButton = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.IntervalComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.StopButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.PressureGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -60,7 +61,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.BreathGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -99,7 +99,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(148, 50);
+            this.label1.Location = new System.Drawing.Point(149, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 12);
             this.label1.TabIndex = 11;
@@ -108,41 +108,42 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox1.Location = new System.Drawing.Point(148, 20);
+            this.textBox1.Location = new System.Drawing.Point(151, 20);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(183, 21);
+            this.textBox1.Size = new System.Drawing.Size(193, 21);
             this.textBox1.TabIndex = 11;
             this.textBox1.Text = "Connection State";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // button6
+            // SettingButton
             // 
-            this.button6.Location = new System.Drawing.Point(938, 35);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(111, 27);
-            this.button6.TabIndex = 12;
-            this.button6.Text = "Setting";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.SettingButton.Location = new System.Drawing.Point(938, 35);
+            this.SettingButton.Name = "SettingButton";
+            this.SettingButton.Size = new System.Drawing.Size(111, 27);
+            this.SettingButton.TabIndex = 12;
+            this.SettingButton.Text = "Setting";
+            this.SettingButton.UseVisualStyleBackColor = true;
+            this.SettingButton.Click += new System.EventHandler(this.SettingButton_Click);
             // 
-            // button1
+            // StartButton
             // 
-            this.button1.Location = new System.Drawing.Point(16, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 41);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
+            this.StartButton.Location = new System.Drawing.Point(10, 23);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(55, 40);
+            this.StartButton.TabIndex = 0;
+            this.StartButton.Text = "Start";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.IntervalComboBox);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Controls.Add(this.button6);
-            this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.SettingButton);
             this.groupBox4.Controls.Add(this.groupBox6);
-            this.groupBox4.Controls.Add(this.button3);
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.StopButton);
+            this.groupBox4.Controls.Add(this.StartButton);
             this.groupBox4.Location = new System.Drawing.Point(12, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1066, 79);
@@ -150,14 +151,14 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Measurement Control";
             // 
-            // textBox2
+            // IntervalComboBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(299, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(32, 21);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.Text = "5";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.IntervalComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.IntervalComboBox.FormattingEnabled = true;
+            this.IntervalComboBox.Location = new System.Drawing.Point(286, 44);
+            this.IntervalComboBox.Name = "IntervalComboBox";
+            this.IntervalComboBox.Size = new System.Drawing.Size(58, 20);
+            this.IntervalComboBox.TabIndex = 13;
             // 
             // groupBox6
             // 
@@ -172,6 +173,15 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Data Logging";
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(506, 17);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(52, 23);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "AutoSave";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(448, 17);
@@ -180,7 +190,6 @@
             this.button4.TabIndex = 2;
             this.button4.Text = "AutoSave";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // textBox8
             // 
@@ -199,14 +208,16 @@
             this.button5.Text = "Path";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // StopButton
             // 
-            this.button3.Location = new System.Drawing.Point(86, 21);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(56, 41);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Stop";
-            this.button3.UseVisualStyleBackColor = true;
+            this.StopButton.Enabled = false;
+            this.StopButton.Location = new System.Drawing.Point(73, 23);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(55, 40);
+            this.StopButton.TabIndex = 2;
+            this.StopButton.Text = "Stop";
+            this.StopButton.UseVisualStyleBackColor = true;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
             // 
             // label6
             // 
@@ -410,15 +421,6 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(506, 17);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(52, 23);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "AutoSave";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -456,15 +458,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Col1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SettingButton;
+        private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button StopButton;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataVisualization.Charting.Chart PressureGraph;
@@ -479,7 +480,14 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button7;
 
+        private void ResetGraph()
+        {
+            BreathGraph.Series[0].Points.Clear();
+            RPMGraph.Series[0].Points.Clear();
+            PressureGraph.Series[0].Points.Clear();
+        }
 
+        private System.Windows.Forms.ComboBox IntervalComboBox;
 
     }
 }

@@ -16,8 +16,6 @@ namespace Termie
     public partial class MainForm : Form
     {
         #region Variable
-        bool bRunning = true;
-
         Stopwatch m_sw;
         #endregion
 
@@ -34,6 +32,11 @@ namespace Termie
             com.DataReceived += OnDataReceived;
             com.Open();
 
+            int[] Interval = {1, 10, 100, 200, 1000, 0};
+            for (int i = 0; Interval[i] != 0; ++i)
+                IntervalComboBox.Items.Add(Interval[i].ToString());
+            IntervalComboBox.SelectedIndex = 1;
+
             // stopwatch
             m_sw = new Stopwatch();
             m_sw.Reset();
@@ -45,6 +48,8 @@ namespace Termie
         {
             CommPort com = CommPort.Instance;
             com.Close();
+
+            Settings.Write();
 
             base.OnClosed(e);
         }
@@ -180,49 +185,53 @@ namespace Termie
             float fTime = (float)m_sw.ElapsedMilliseconds / 1000.0F;
             Random r = new Random();
 
-            for (int i = 0; i < 60; ++i)
-            {
-                string tmp = ((int)fTime).ToString() + '.' + i.ToString();
+            BreathGraph.Series[0].Points.AddXY(fTime, r.NextDouble() * 10.0F - 5.0F);
+            RPMGraph.Series[0].Points.AddXY(fTime, r.NextDouble() * 10.0F - 5.0F);
+            PressureGraph.Series[0].Points.AddXY(fTime, r.NextDouble() * 10.0F - 5.0F);
 
-                BreathGraph.Series[0].Points.AddXY(tmp, r.NextDouble() * 10.0F - 5.0F);
-                RPMGraph.Series[0].Points.AddXY(tmp, r.NextDouble() * 10.0F - 5.0F);
-                PressureGraph.Series[0].Points.AddXY(tmp, r.NextDouble() * 10.0F - 5.0F);
-
-                BreathGraph.Invalidate();
-                RPMGraph.Invalidate();
-                PressureGraph.Invalidate();
-                // BreathGraph.Series[0].Points.AddXY(tmp, packet.m_DataIn[(int)PacketDataType.eBreath]);
-                // RPMGraph.Series[0].Points.AddXY(tmp, packet.m_DataIn[(int)PacketDataType.eRPM]);
-                // PressureGraph.Series[0].Points.AddXY(tmp, packet.m_DataIn[(int)PacketDataType.ePressure]);
-            }
-            
-
-            
+            BreathGraph.Invalidate();
+            RPMGraph.Invalidate();
+            PressureGraph.Invalidate();
+            // BreathGraph.Series[0].Points.AddXY(tmp, packet.m_DataIn[(int)PacketDataType.eBreath]);
+            // RPMGraph.Series[0].Points.AddXY(tmp, packet.m_DataIn[(int)PacketDataType.eRPM]);
+            // PressureGraph.Series[0].Points.AddXY(tmp, packet.m_DataIn[(int)PacketDataType.ePressure]);
+           
         }
         #endregion
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            Packet pac = new Packet();
-
-            Random r = new Random();
-
-            pac.m_DataIn[0] = (float)r.NextDouble() * 10.0F;
-            pac.m_DataIn[1] = (float)r.NextDouble() * 10.0F;
-            pac.m_DataIn[2] = (float)r.NextDouble() * 10.0F;
-
-            DrawGraph(pac);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            bRunning = !bRunning;
-        }
-
-
-
-
         #region Ghong
+
+        #region Button
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            CommPort com = CommPort.Instance;
+            if (!com.IsRunning())
+            {
+                ResetGraph();
+                com.Button_Click();
+                StartButton.Enabled = false;
+                StopButton.Enabled = true;
+            }
+
+        }
+
+        private void StopButton_Click(object sender, EventArgs e)
+        {
+            CommPort com = CommPort.Instance;
+            if (com.IsRunning())
+            {
+                com.Button_Click();
+                StartButton.Enabled = true;
+                StopButton.Enabled = false;
+            }
+        }
+
+        private void SettingButton_Click(object sender, EventArgs e)
+        {
+            SettingForm settingform = new SettingForm();
+            settingform.ShowDialog();
+        }
+        #endregion
 
         #endregion
 

@@ -60,8 +60,7 @@ namespace Termie
             Option.LocalEcho = bool.Parse(ini.ReadValue("Option", "LocalEcho", Option.LocalEcho.ToString()));
 			Option.StayOnTop = bool.Parse(ini.ReadValue("Option", "StayOnTop", Option.StayOnTop.ToString()));
 			Option.FilterUseCase = bool.Parse(ini.ReadValue("Option", "FilterUseCase", Option.FilterUseCase.ToString()));
-            Option.LogFileName = ini.ReadValue("Option", "LogFileName", Option.LogFileName.ToString());
-        }
+		}
 
         /// <summary>
         ///   Write the settings to disk. </summary>
@@ -81,8 +80,6 @@ namespace Termie
             ini.WriteValue("Option", "LocalEcho", Option.LocalEcho.ToString());
 			ini.WriteValue("Option", "StayOnTop", Option.StayOnTop.ToString());
 			ini.WriteValue("Option", "FilterUseCase", Option.FilterUseCase.ToString());
-
-            ini.WriteValue("Option", "LogFileName", Option.LogFileName.ToString()); // lms 추가함. 로그파일 경로 저장.
 		}
 	}
 }

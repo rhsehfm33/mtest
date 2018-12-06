@@ -15,6 +15,7 @@ namespace Termie
         Thread _genThread;
         volatile bool _bIsGenerating;
         volatile bool _bKeepAlive;
+        volatile bool _bZero;
 
         //begin Singleton pattern
         static readonly RandomGen instance = new RandomGen();
@@ -26,6 +27,7 @@ namespace Termie
         RandomGen()
         {
             _bIsGenerating = false;
+            _bZero = true;
         }
 
         public static RandomGen Instance
@@ -45,6 +47,10 @@ namespace Termie
         public void ChangeGenStat()
         {
             _bIsGenerating = !_bIsGenerating;
+        }
+        public void ChangToZero()
+        {
+            _bZero = !_bZero;
         }
 
         public void CreateThread()
@@ -68,12 +74,27 @@ namespace Termie
 
             try
             {
+                float a;
+                float b;
+                float c;
                 while (_bKeepAlive)
                 {
                     if (_bIsGenerating &&sw.ElapsedMilliseconds > 200.0F)
                     {
                         sw.Restart();
-                        strRandomString = 'e' + rRand.Next(0, 20).ToString() + '\n' + rRand.Next(0, 20).ToString();
+                        if (_bZero)
+                        {
+                            a = (float)rRand.NextDouble() * 100.0F;
+                            b = (float)rRand.NextDouble() * 100.0F;
+                            c = (float)rRand.NextDouble() * 100.0F;
+                        }
+                        else
+                        {
+                            a = b = c = 0.0F;
+                        }
+
+                        strRandomString = a.ToString() + b.ToString() + c.ToString();
+                        //strRandomString = rRand.Next(0, 1000).ToString() + Token.seriesToken + rRand.Next(0, 20).ToString() + Token.seriesToken + Token.lineToken;
                         com.Send(strRandomString);
                     }
                     else

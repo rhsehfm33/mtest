@@ -515,9 +515,10 @@ namespace Termie
                 if (!form3.IsHandleCreated)
                 {
                     form3.DrawGraph(dataIn);
-                    form3.ShowDialog();
-                    Write_ExcelData(dataIn);
-                    WriteLogFile(ref dataIn);
+                    form3.Show();
+                    form3.BringToFront();
+                    //Write_ExcelData(dataIn);
+                    //WriteLogFile(ref dataIn);
                 }
                 else
                 {
@@ -851,12 +852,6 @@ namespace Termie
                 wb.Close(true);
                 excelApp.Quit();
             }
-            catch(Exception e)
-            {
-                ReleaseExcelObject(ws);
-                ReleaseExcelObject(wb);
-                ReleaseExcelObject(excelApp);
-            }
             finally
             {
                 ReleaseExcelObject(ws);
@@ -888,6 +883,9 @@ namespace Termie
             }
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

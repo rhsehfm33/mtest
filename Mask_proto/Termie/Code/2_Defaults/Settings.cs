@@ -14,7 +14,7 @@ namespace Termie
         /// <summary> Port settings. </summary>
         public class Port
         {
-            public static string PortName = "COM1";
+            public static string PortName = "COM2";
             public static int BaudRate = 115200;
             public static int DataBits = 8;
             public static System.IO.Ports.Parity Parity = System.IO.Ports.Parity.None;

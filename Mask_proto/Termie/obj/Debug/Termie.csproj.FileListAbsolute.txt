@@ -21,7 +21,6 @@ D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.csprojResolveAssemblyR
 D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\bin\Debug\Termie.exe.config
 D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\bin\Debug\Termie.exe
 D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\bin\Debug\Termie.pdb
-D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.csprojResolveAssemblyReference.cache
 D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.csproj.ResolveComReference.cache
 D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.MainForm.resources
 D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.Form1.resources
@@ -33,3 +32,4 @@ D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.Sample_Des
 D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.csproj.GenerateResource.Cache
 D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.exe
 D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.pdb
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.csprojResolveAssemblyReference.cache

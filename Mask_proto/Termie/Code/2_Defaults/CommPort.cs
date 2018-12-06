@@ -85,9 +85,10 @@ namespace Termie
         /// <summary> Get the data and pass it on. </summary>
         private void ReadPort()
         {
+            Packet SerialIn = new Packet();
             while (_keepReading)
             {
-                if (_serialPort.IsOpen)
+                if (_serialPort.IsOpen) // 여기에 && bRunning이 들어가야됨       - 근홍
                 {
                     byte[] readBuffer = new byte[_serialPort.ReadBufferSize + 1];
                     try
@@ -99,16 +100,16 @@ namespace Termie
                         // is available on the port, up until the ReadTimeout milliseconds
                         // have elapsed, at which time a TimeoutException will be thrown.
                         int count = _serialPort.Read(readBuffer, 0, _serialPort.ReadBufferSize);
-                        Packet SerialIn = new Packet();
                         SerialIn.SetData(readBuffer, 0, count);
-                        //String SerialIn = System.Text.Encoding.UTF8.GetString(readBuffer, 0, count);
                         DataReceived(SerialIn);
                     }
-                    catch (TimeoutException) { }
+                    catch (TimeoutException)
+                    {
+                    }
                 }
                 else
                 {
-                    TimeSpan waitTime = new TimeSpan(0, 0, 0, 0, 10);
+                    TimeSpan waitTime = new TimeSpan(0, 0, 0, 0, 50);
                     Thread.Sleep(waitTime);
                 }
             }

@@ -16,7 +16,7 @@ namespace Termie
     public partial class MainForm : Form
     {
         #region Variable
-        bool bRunning = false;
+        bool bRunning = true;
 
         Stopwatch m_sw;
         #endregion
@@ -69,9 +69,20 @@ namespace Termie
                 return;
             }
 
+            long a = m_sw.ElapsedMilliseconds;
+
             // Read Data
-            if(bRunning)
-                DrawGraph(dataIn);
+            DrawGraph(dataIn);          // 그래프는 대기
+
+            // Logging                 // 로깅부분 작업 - 민성
+            //if (bLogging)
+            //{
+            //    DrawGrid();
+            //}
+            //#region "ReGion Name"
+            //
+            //ddddddd
+            //#endregion
         }
 
         /// <summary>
@@ -167,14 +178,26 @@ namespace Termie
         public void DrawGraph(Packet packet)
         {
             float fTime = (float)m_sw.ElapsedMilliseconds / 1000.0F;
+            Random r = new Random();
 
-            BreathGraph.Series[0].Points.AddXY(fTime, packet.m_DataIn[(int)PacketDataType.eBreath]);
-            RPMGraph.Series[0].Points.AddXY(fTime, packet.m_DataIn[(int)PacketDataType.eRPM]);
-            PressureGraph.Series[0].Points.AddXY(fTime, packet.m_DataIn[(int)PacketDataType.ePressure]);
+            for (int i = 0; i < 60; ++i)
+            {
+                string tmp = ((int)fTime).ToString() + '.' + i.ToString();
 
-            BreathGraph.Invalidate();
-            RPMGraph.Invalidate();
-            PressureGraph.Invalidate();
+                BreathGraph.Series[0].Points.AddXY(tmp, r.NextDouble() * 10.0F - 5.0F);
+                RPMGraph.Series[0].Points.AddXY(tmp, r.NextDouble() * 10.0F - 5.0F);
+                PressureGraph.Series[0].Points.AddXY(tmp, r.NextDouble() * 10.0F - 5.0F);
+
+                BreathGraph.Invalidate();
+                RPMGraph.Invalidate();
+                PressureGraph.Invalidate();
+                // BreathGraph.Series[0].Points.AddXY(tmp, packet.m_DataIn[(int)PacketDataType.eBreath]);
+                // RPMGraph.Series[0].Points.AddXY(tmp, packet.m_DataIn[(int)PacketDataType.eRPM]);
+                // PressureGraph.Series[0].Points.AddXY(tmp, packet.m_DataIn[(int)PacketDataType.ePressure]);
+            }
+            
+
+            
         }
         #endregion
 
@@ -189,6 +212,11 @@ namespace Termie
             pac.m_DataIn[2] = (float)r.NextDouble() * 10.0F;
 
             DrawGraph(pac);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            bRunning = !bRunning;
         }
 
 

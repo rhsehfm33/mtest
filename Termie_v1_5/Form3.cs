@@ -11,7 +11,7 @@ namespace Termie
 {
     public partial class Form3 : Form
     {
-        private int autoInc = 1;
+        private float autoInc = 1;
         public Form3()
         {
             InitializeComponent();
@@ -62,6 +62,27 @@ namespace Termie
                     num += c;
                 }
             }
+
+            var chartarea = graph.ChartAreas[graph.Series[series].ChartArea];
+
+            if (autoInc > 30)
+            {
+                chartarea.AxisX.Maximum = autoInc;
+                chartarea.AxisX.Minimum = (autoInc - 30);
+                chartarea.AxisX.ScaleView.Zoom(0, autoInc);
+
+                chartarea.AxisX.ScaleView.Position = graph.Series[series].Points.Count - chartarea.AxisX.ScaleView.Size;
+            }
+            else
+            {
+                chartarea.AxisX.Maximum = autoInc;
+                chartarea.AxisX.Minimum = 0;
+                chartarea.AxisX.ScaleView.Zoom(0, autoInc);
+                chartarea.AxisX.ScaleView.Zoomable = true;
+            }
+            chartarea.AxisX.ScrollBar.ButtonStyle = System.Windows.Forms.DataVisualization.Charting.ScrollBarButtonStyles.SmallScroll;
+            chartarea.CursorX.AutoScroll = true;
+            chartarea.AxisX.ScaleView.SmallScrollSize = 5;
         }
         private void Form3_Load(object sender, EventArgs e)
         {

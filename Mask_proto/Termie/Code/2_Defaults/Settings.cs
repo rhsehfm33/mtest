@@ -26,8 +26,9 @@ namespace Termie
         public class Option
         {
             public static bool StayOnTop = false;
-            public static string LogFilePath = Application.StartupPath;
+            //public static string LogFilePath = Application.StartupPath;
             public static int Interval = 5;
+            public static string LogFilePath = "";
             //public enum AppendType
             //{
             //    AppendNothing,
@@ -56,8 +57,9 @@ namespace Termie
             Port.Handshake = (Handshake)Enum.Parse(typeof(Handshake), ini.ReadValue("Port", "Handshake", Port.Handshake.ToString()));
 
             Option.StayOnTop = bool.Parse(ini.ReadValue("Option", "StayOnTop", Option.StayOnTop.ToString()));
-            Option.LogFilePath = ini.ReadValue("Option", "LogFilePath", Option.LogFilePath);
             Option.Interval = ini.ReadValue("Option", "Interval", Option.Interval);
+
+            Option.LogFilePath = ini.ReadValue("Option", "LogFileName", Option.LogFilePath.ToString());
             //Option.AppendToSend = (Option.AppendType)Enum.Parse(typeof(Option.AppendType), ini.ReadValue("Option", "AppendToSend", Option.AppendToSend.ToString()));
             //Option.HexOutput = bool.Parse(ini.ReadValue("Option", "HexOutput", Option.HexOutput.ToString()));
             //Option.MonoFont = bool.Parse(ini.ReadValue("Option", "MonoFont", Option.MonoFont.ToString()));
@@ -80,6 +82,8 @@ namespace Termie
             ini.WriteValue("Option", "StayOnTop", Option.StayOnTop.ToString());
             ini.WriteValue("Option", "LogFilePath", Option.LogFilePath);
             ini.WriteValue("Option", "Interval", Option.Interval);
+
+            ini.WriteValue("Option", "LogFileName", Option.LogFilePath.ToString()); // lms 추가함. 로그파일 경로 저장.
             //ini.WriteValue("Option", "AppendToSend", Option.AppendToSend.ToString());
             //ini.WriteValue("Option", "HexOutput", Option.HexOutput.ToString());
             //ini.WriteValue("Option", "MonoFont", Option.MonoFont.ToString());

@@ -19,11 +19,15 @@ namespace Termie
         Stopwatch m_sw;
         #endregion
 
+        #region 민성
+        bool _bLogging;
+        #endregion
         #region Default
         public MainForm()
         {
             InitializeComponent();
 
+            _bLogging = false;
             Settings.Read();
             TopMost = Settings.Option.StayOnTop;
 
@@ -32,7 +36,7 @@ namespace Termie
             com.DataReceived += OnDataReceived;
             com.Open();
 
-            int[] Interval = {1, 10, 100, 200, 1000, 0};
+            int[] Interval = { 1, 10, 100, 200, 1000, 0 };
             for (int i = 0; Interval[i] != 0; ++i)
                 IntervalComboBox.Items.Add(Interval[i].ToString());
             IntervalComboBox.SelectedIndex = 1;
@@ -76,18 +80,13 @@ namespace Termie
 
             long a = m_sw.ElapsedMilliseconds;
 
-            // Read Data
-            DrawGraph(dataIn);          // 그래프는 대기
-
             // Logging                 // 로깅부분 작업 - 민성
-            //if (bLogging)
-            //{
-            //    DrawGrid();
-            //}
-            //#region "ReGion Name"
-            //
-            //ddddddd
-            //#endregion
+            #region 민성
+            if (_bLogging)
+            {
+                DrawGrid(dataIn);
+            }
+            #endregion
         }
 
         /// <summary>
@@ -108,44 +107,35 @@ namespace Termie
         #endregion
 
         #region Excel
-        public void Write_ExcelData(string stringout)
+        public void Write_ExcelData()
         {
             Excel.Application excelApp = null;
             Excel.Workbook wb = null;
             Excel.Worksheet ws = null;
+            object missing = System.Reflection.Missing.Value;
+
 
             try
             {
                 int r = 1, c = 1;
                 // Excel 첫번째 워크시트 마지막 번째 가져오기. lms 추가함.
                 excelApp = new Excel.Application();
-                wb = excelApp.Workbooks.Open(Settings.Option.LogFilePath);
+                wb = excelApp.Workbooks.Add(missing);
                 ws = wb.Worksheets.get_Item(1) as Excel.Worksheet;
 
-                Excel.Range last = ws.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
-                r = last.Row;
-                string num = "";
 
-                foreach (char n in stringout)
+                for (; c <= dataGridView.ColumnCount; c++)
                 {
-                    if (n == Token.seriesToken)
+                    ws.Cells[r, c] = dataGridView.Columns[c-1].HeaderText;
+                }
+                for(r=2; r <= dataGridView.Rows.Count+1; r++)
+                {
+                    for(c = 1; c <= dataGridView.ColumnCount; c++)
                     {
-                        ws.Cells[r, c] = float.Parse(num);
-                        num = "";
-                        c++;
-                    }
-                    else if (n == Token.lineToken)
-                    {
-                        num = "";
-                        r++;
-                        c = 1;
-                    }
-                    else
-                    {
-                        num += n;
+                        ws.Cells[r, c] = dataGridView.Rows[r-2].Cells[c-1].Value;
                     }
                 }
-                wb.Save();
+                wb.SaveAs(Settings.Option.LogFilePath);
                 wb.Close(true);
                 excelApp.Quit();
             }
@@ -157,6 +147,48 @@ namespace Termie
                 ReleaseExcelObject(excelApp);
             }
         }
+    
+
+    //Excel.Application excelApp = null;
+    //Excel.Workbook wb = null;
+    //Excel.Worksheet ws = null;
+
+    //try
+    //{
+    //    int r = 1, c = 1;
+    //    // Excel 첫번째 워크시트 마지막 번째 가져오기. lms 추가함.
+    //    excelApp = new Excel.Application();
+    //    string tmp = "C:\\Users\\bhy\\OneDrive\\바탕 화면\\mask_test\\mtest\\log\\sdf1.xlsx";
+    //    wb = excelApp.Workbooks.Open(tmp);// Settings.Option.LogFilePath);
+    //    ws = wb.Worksheets.get_Item(1) as Excel.Worksheet;
+
+    //    //Excel.Range last = ws.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
+    //    //r = last.Row;
+
+    //    for (int i = 1; i < dataGridView.Columns.Count+1; i++)
+    //    {
+    //        ws.Cells[1, i] = dataGridView.Columns[i - 1].HeaderText;
+    //    }
+    //    // storing Each row and column value to excel sheet  
+    //    for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+    //    {
+    //        for (int j = 0; j < dataGridView.Columns.Count; j++)
+    //        {
+    //            ws.Cells[i + 2, j + 1] = 123;// dataGridView.Rows[i].Cells[j].Value;
+    //        }
+    //    }
+    //    wb.SaveAs();
+    //    wb.Close(true);
+    //    excelApp.Quit();
+    //}
+    //finally
+    //{
+    //    // Clean up
+    //    ReleaseExcelObject(ws);
+    //    ReleaseExcelObject(wb);
+    //    ReleaseExcelObject(excelApp);
+    //}
+
         private static void ReleaseExcelObject(object obj)
         {
             try
@@ -228,15 +260,101 @@ namespace Termie
 
         private void SettingButton_Click(object sender, EventArgs e)
         {
-            SettingForm settingform = new SettingForm();
-            settingform.ShowDialog();
+            //SettingForm settingform = new SettingForm();
+            //settingform.ShowDialog();
         }
         #endregion
 
         #endregion
 
-        #region MinSeong
+        #region MinSeong        // 수정 필요.
+        private void btnLogStart_Click(object sender, EventArgs e)
+        {
+            _bLogging = !_bLogging;
+            if (_bLogging)
+                btnLogStart.Text = "Pause";
+            else
+                btnLogStart.Text = "Start";
+        }
 
+        public void DrawGrid(Packet packet)
+        {
+            float fTime = (float)m_sw.ElapsedMilliseconds / 1000.0F;
+            dataGridView.Rows.Add(fTime, packet.m_DataIn[(int)PacketDataType.eBreath],
+                                   packet.m_DataIn[(int)PacketDataType.eRPM], packet.m_DataIn[(int)PacketDataType.ePressure]);
+
+            dataGridView.FirstDisplayedScrollingRowIndex = dataGridView.RowCount - 1;
+
+            dataGridView.Invalidate();
+        }
+
+
+       
+
+
+        private void btnLogStop_Click(object sender, EventArgs e)
+        {
+            Write_ExcelData();
+        }
+
+        private void btnLogPath_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog fileDialog1 = new SaveFileDialog();
+
+            fileDialog1.Title = "Save Log As";
+            fileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx";
+            fileDialog1.FilterIndex = 1;
+            fileDialog1.RestoreDirectory = true;
+
+            if (fileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                LogPathBox.Text = fileDialog1.FileName;
+                Settings.Option.LogFilePath = fileDialog1.FileName;
+                if (File.Exists(LogPathBox.Text))
+                    File.Delete(LogPathBox.Text);
+            }
+            else
+            {
+                LogPathBox.Text = "";
+            }
+            //SaveFileDialog fileDialog1 = new SaveFileDialog();
+
+            //fileDialog1.Title = "Save Log As";
+            //fileDialog1.Filter = "Excel files (*.xls)|*.xls";
+            //fileDialog1.FilterIndex = 1;
+            //fileDialog1.RestoreDirectory = true;
+            ////fileDialog1.FileName = Settings.Option.LogFilePath;
+            //Excel.Application excelApp = new Excel.Application();
+            //Excel.Workbook workBooK = excelApp.Workbooks.Add(Type.Missing);
+            //if (fileDialog1.ShowDialog() == DialogResult.OK)
+            //{
+            //    Settings.Option.LogFilePath = fileDialog1.FileName;
+            //    try
+            //    {
+            //        workBooK.SaveAs(Settings.Option.LogFilePath);
+
+            //        workBooK.Close(true);
+            //        excelApp.Quit();
+            //    }
+            //    catch
+            //    { }
+            //    finally
+            //    {
+            //        // Clean up
+            //        ReleaseExcelObject(workBooK);
+            //        ReleaseExcelObject(excelApp);
+            //    }
+
+            //    LogPathBox.Text = fileDialog1.FileName;
+
+            //    Settings.Option.LogFilePath = LogPathBox.Text;
+            //}
+            //else
+            //{
+            //    LogPathBox.Text = "";
+            //}
+
+        }
         #endregion
     }
 }

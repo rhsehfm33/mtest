@@ -25,11 +25,11 @@ namespace Termie
         #region Default
         public MainForm()
         {
-            Settings.Read();
             InitializeComponent();
 
             _bLogging = false;
-  
+            Settings.Read();
+            Settings.setLogPathFile(ref this.LogPathBox);
             TopMost = Settings.Option.StayOnTop;
 
             CommPort com = CommPort.Instance;
@@ -64,13 +64,13 @@ namespace Termie
 
         // delegate used for Invoke
         internal delegate void StringDelegate(string data);
-        internal delegate void PacketDelegate(Packet data);
+        internal delegate void PacketDelegate(RealPacket data);
 
         /// <summary>
         /// Handle data received event from serial port.
         /// </summary>
         /// <param name="data">incoming data</param>
-        public void OnDataReceived(Packet dataIn)
+        public void OnDataReceived(RealPacket dataIn)
         {
             //Handle multi-threading
             if (InvokeRequired)
@@ -237,12 +237,10 @@ namespace Termie
                 btnLogStart.Text = "Start";
         }
 
-        public void DrawGrid(Packet packet)
+        public void DrawGrid(RealPacket packet)
         {
-            float fTime = (float)m_sw.ElapsedMilliseconds / 1000.0F;
-            dataGridView.Rows.Add(fTime, packet.m_DataIn[(int)PacketDataType.eBreath],
-                                   packet.m_DataIn[(int)PacketDataType.eRPM], packet.m_DataIn[(int)PacketDataType.ePressure]);
-
+            //float fTime = (float)m_sw.ElapsedMilliseconds / 1000.0F;
+            dataGridView.Rows.Add(packet.breath,packet.pressure, packet.LRPM, packet.RRPM);
             dataGridView.FirstDisplayedScrollingRowIndex = dataGridView.RowCount - 1;
 
             dataGridView.Invalidate();
@@ -275,5 +273,10 @@ namespace Termie
             }
         }
         #endregion
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

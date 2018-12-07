@@ -68,15 +68,15 @@ namespace Termie
 
             CommPort com = CommPort.Instance;
 
-            string strRandomString = "";
-
+            //string strRandomString = "";
+            byte[] packet= new byte[18];
             Random rRand = new Random();
 
             try
             {
-                float a;
-                float b;
-                float c;
+                packet[0] = 2;
+                packet[17] = 3;
+                float[] packetValue = new float[4];
                 while (_bKeepAlive)
                 {
                     if (_bIsGenerating &&sw.ElapsedMilliseconds > 200.0F)
@@ -84,18 +84,31 @@ namespace Termie
                         sw.Restart();
                         if (_bZero)
                         {
-                            a = (float)rRand.NextDouble() * 100.0F;
-                            b = (float)rRand.NextDouble() * 100.0F;
-                            c = (float)rRand.NextDouble() * 100.0F;
+                            for(int i = 0; i < 4; ++i)
+                            {
+                                packetValue[i] = (float)rRand.NextDouble() * 100.0F;
+                            }
+                            //a = (float)rRand.NextDouble() * 100.0F;
+                            //b = (float)rRand.NextDouble() * 100.0F;
+                            //c = (float)rRand.NextDouble() * 100.0F;
+                            //d = (float)rRand.NextDouble() * 100.0F;
                         }
                         else
                         {
-                            a = b = c = 0.0F;
+                            for (int i = 0; i < 4; ++i)
+                            {
+                                packetValue[i] = 0;
+                            }
                         }
 
-                        strRandomString = a.ToString() + b.ToString() + c.ToString();
+                        for(int i = 0; i < 4; i++)
+                        {
+                            byte[] FloatToByte = System.BitConverter.GetBytes(packetValue[i]);
+                            Buffer.BlockCopy(packetValue, 0, packet, 1, 16);
+                        }
+                        //strRandomString = start.ToString() + a.ToString() + b.ToString() + c.ToString() + d.ToString() + end.ToString();
                         //strRandomString = rRand.Next(0, 1000).ToString() + Token.seriesToken + rRand.Next(0, 20).ToString() + Token.seriesToken + Token.lineToken;
-                        com.Send(strRandomString);
+                        com.Send(packet);
                     }
                     else
                     {

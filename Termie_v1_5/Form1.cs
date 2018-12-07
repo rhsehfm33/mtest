@@ -65,6 +65,7 @@ namespace Termie
 
             RandomGen gen = RandomGen.Instance;
             gen.CreateThread();
+
         }
 
         // shutdown the worker thread when the form closes
@@ -775,48 +776,6 @@ namespace Termie
 
             gen.ChangeGenStat();
 
-            //// ¹öÆ° ´©¸£¸é 30ÃÊµ¿¾È ·£´ý ½ÅÈ£ »ý¼º
-            //Stopwatch sw = new Stopwatch();
-            //sw.Reset();
-            //sw.Start();
-
-            //int iCount = 0;
-
-            //while((sw.ElapsedMilliseconds > (iCount * 200.0F)))
-            //{
-            //    iCount++;
-
-            //    Random rand = new Random();
-
-            //    String random_num = "";
-
-            ////
-            //'\n'
-
-            //String text = System.IO.File.ReadAllText(dialog.FileName);
-            //String strExtension = Path.GetExtension(dialog.FileName);
-            //// ¿¢¼¿ ±¸ºÐ
-            //if (strExtension == ".xls" || strExtension == ".xlsx")
-            //{
-            //    text = Read_ExcelData(dialog.FileName);
-            //    text = "e" + text;
-            //}
-            //else
-            //    text = "n" + text;
-
-            //CommPort com = CommPort.Instance;
-            //com.Send(text);
-
-            //if (Settings.Option.LocalEcho)
-            //{
-            //    outputList_Add("SendFile " + dialog.FileName + "," +
-            //        text.Length.ToString() + " byte(s)\n", sentColor);
-            //}
-
-            //if (iCount > 150) break;
-            //}
-
-            //sw.Stop();
         }
 
         #endregion

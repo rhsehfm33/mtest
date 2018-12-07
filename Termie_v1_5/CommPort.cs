@@ -189,7 +189,7 @@ namespace Termie
 
         /// <summary>Send data to the serial port after appending line ending. </summary>
         /// <param name="data">An string containing the data to send. </param>
-        public void Send(string data)
+        public void Send(byte[] data)
         {
             if (IsOpen)
             {
@@ -203,7 +203,7 @@ namespace Termie
                 //    case Settings.Option.AppendType.AppendCRLF:
                 //        lineEnding = "\r\n"; break;
                 //}
-                _serialPort.Write(data + "");
+                _serialPort.Write(data,0,18);
             }
         }
         public void SendByFloat(byte[] data)

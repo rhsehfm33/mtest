@@ -60,7 +60,7 @@ namespace Termie
         //begin Observer pattern
         public delegate void EventHandler(string param);
         public EventHandler StatusChanged;
-        public delegate void PacketEventHandler(Packet param);
+        public delegate void PacketEventHandler(RealPacket param);
         public PacketEventHandler DataReceived;
         //end Observer pattern
 
@@ -92,9 +92,10 @@ namespace Termie
             {
                 if (_serialPort.IsOpen && _bRunning)
                 {
-                    byte[] readBuffer = new byte[_serialPort.ReadBufferSize + 1];
+                    byte[] readBuffer = new byte[_serialPort.ReadBufferSize];
                     try
                     {
+                        RealPacket packet;
                         // If there are bytes available on the serial port,
                         // Read returns up to "count" bytes, but will not block (wait)
                         // for the remaining bytes. If there are no bytes available
@@ -102,8 +103,10 @@ namespace Termie
                         // is available on the port, up until the ReadTimeout milliseconds
                         // have elapsed, at which time a TimeoutException will be thrown.
                         int count = _serialPort.Read(readBuffer, 0, _serialPort.ReadBufferSize);
-                        SerialIn.SetData(readBuffer, 0, count);
-                        DataReceived(SerialIn);
+                        packet = SerialIn.SetData(readBuffer, 0, count-1);
+                        if (packet == null)
+                            continue;
+                        DataReceived(packet);
                     }
                     catch (TimeoutException)
                     {

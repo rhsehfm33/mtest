@@ -59,10 +59,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.BreathGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.colTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBreath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRPMRight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPressure = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRPMRight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRPMLeft = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -80,16 +80,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colTime,
             this.colBreath,
+            this.colPressure,
             this.colRPMRight,
-            this.colPressure});
+            this.colRPMLeft});
             this.dataGridView.Location = new System.Drawing.Point(970, 121);
             this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 23;
             this.dataGridView.Size = new System.Drawing.Size(262, 702);
             this.dataGridView.TabIndex = 15;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // label1
             // 
@@ -205,7 +206,7 @@
             this.LogPathBox.Name = "LogPathBox";
             this.LogPathBox.Size = new System.Drawing.Size(443, 25);
             this.LogPathBox.TabIndex = 0;
-            this.LogPathBox.Text = Settings.Option.LogFilePath;
+            this.LogPathBox.Text = "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\IDE\\default" + ".xlsx";
             // 
             // btnLogPath
             // 
@@ -441,17 +442,17 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
-            // colTime
-            // 
-            this.colTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colTime.HeaderText = "Time";
-            this.colTime.Name = "colTime";
-            // 
             // colBreath
             // 
             this.colBreath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colBreath.HeaderText = "Breath";
             this.colBreath.Name = "colBreath";
+            // 
+            // colPressure
+            // 
+            this.colPressure.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPressure.HeaderText = "Pressure";
+            this.colPressure.Name = "colPressure";
             // 
             // colRPMRight
             // 
@@ -459,11 +460,11 @@
             this.colRPMRight.HeaderText = "RRPM";
             this.colRPMRight.Name = "colRPMRight";
             // 
-            // colPressure
+            // colRPMLeft
             // 
-            this.colPressure.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPressure.HeaderText = "Pressure";
-            this.colPressure.Name = "colPressure";
+            this.colRPMLeft.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colRPMLeft.HeaderText = "LRPM";
+            this.colRPMLeft.Name = "colRPMLeft";
             // 
             // MainForm
             // 
@@ -530,9 +531,9 @@
         }
 
         private System.Windows.Forms.ComboBox IntervalComboBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBreath;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRPMRight;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPressure;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRPMRight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRPMLeft;
     }
 }

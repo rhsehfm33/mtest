@@ -11,6 +11,12 @@ namespace Termie
     /// </summary>
     public class Settings
     {
+        #region lms made this functions
+        public static void setLogPathFile(ref System.Windows.Forms.TextBox LogPathBox)
+        {
+            LogPathBox.Text = Settings.Option.LogFilePath;
+        }
+        #endregion
         /// <summary> Port settings. </summary>
         public class Port
         {
@@ -26,9 +32,8 @@ namespace Termie
         public class Option
         {
             public static bool StayOnTop = false;
-            //public static string LogFilePath = Application.StartupPath;
             public static int Interval = 5;
-            public static string LogFilePath = "";
+            public static string LogFilePath= Application.StartupPath+"\\default.xlsx";
             //public enum AppendType
             //{
             //    AppendNothing,

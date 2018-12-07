@@ -148,47 +148,6 @@ namespace Termie
             }
         }
     
-
-    //Excel.Application excelApp = null;
-    //Excel.Workbook wb = null;
-    //Excel.Worksheet ws = null;
-
-    //try
-    //{
-    //    int r = 1, c = 1;
-    //    // Excel 첫번째 워크시트 마지막 번째 가져오기. lms 추가함.
-    //    excelApp = new Excel.Application();
-    //    string tmp = "C:\\Users\\bhy\\OneDrive\\바탕 화면\\mask_test\\mtest\\log\\sdf1.xlsx";
-    //    wb = excelApp.Workbooks.Open(tmp);// Settings.Option.LogFilePath);
-    //    ws = wb.Worksheets.get_Item(1) as Excel.Worksheet;
-
-    //    //Excel.Range last = ws.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
-    //    //r = last.Row;
-
-    //    for (int i = 1; i < dataGridView.Columns.Count+1; i++)
-    //    {
-    //        ws.Cells[1, i] = dataGridView.Columns[i - 1].HeaderText;
-    //    }
-    //    // storing Each row and column value to excel sheet  
-    //    for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
-    //    {
-    //        for (int j = 0; j < dataGridView.Columns.Count; j++)
-    //        {
-    //            ws.Cells[i + 2, j + 1] = 123;// dataGridView.Rows[i].Cells[j].Value;
-    //        }
-    //    }
-    //    wb.SaveAs();
-    //    wb.Close(true);
-    //    excelApp.Quit();
-    //}
-    //finally
-    //{
-    //    // Clean up
-    //    ReleaseExcelObject(ws);
-    //    ReleaseExcelObject(wb);
-    //    ReleaseExcelObject(excelApp);
-    //}
-
         private static void ReleaseExcelObject(object obj)
         {
             try
@@ -288,10 +247,6 @@ namespace Termie
             dataGridView.Invalidate();
         }
 
-
-       
-
-
         private void btnLogStop_Click(object sender, EventArgs e)
         {
             Write_ExcelData();
@@ -317,43 +272,6 @@ namespace Termie
             {
                 LogPathBox.Text = "";
             }
-            //SaveFileDialog fileDialog1 = new SaveFileDialog();
-
-            //fileDialog1.Title = "Save Log As";
-            //fileDialog1.Filter = "Excel files (*.xls)|*.xls";
-            //fileDialog1.FilterIndex = 1;
-            //fileDialog1.RestoreDirectory = true;
-            ////fileDialog1.FileName = Settings.Option.LogFilePath;
-            //Excel.Application excelApp = new Excel.Application();
-            //Excel.Workbook workBooK = excelApp.Workbooks.Add(Type.Missing);
-            //if (fileDialog1.ShowDialog() == DialogResult.OK)
-            //{
-            //    Settings.Option.LogFilePath = fileDialog1.FileName;
-            //    try
-            //    {
-            //        workBooK.SaveAs(Settings.Option.LogFilePath);
-
-            //        workBooK.Close(true);
-            //        excelApp.Quit();
-            //    }
-            //    catch
-            //    { }
-            //    finally
-            //    {
-            //        // Clean up
-            //        ReleaseExcelObject(workBooK);
-            //        ReleaseExcelObject(excelApp);
-            //    }
-
-            //    LogPathBox.Text = fileDialog1.FileName;
-
-            //    Settings.Option.LogFilePath = LogPathBox.Text;
-            //}
-            //else
-            //{
-            //    LogPathBox.Text = "";
-            //}
-
         }
         #endregion
     }

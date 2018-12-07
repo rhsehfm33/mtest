@@ -12,10 +12,10 @@ namespace Termie
     public class Settings
     {
         #region lms made this functions
-        public static void setLogPathFile(ref System.Windows.Forms.TextBox LogPathBox)
-        {
-            LogPathBox.Text = Settings.Option.LogFilePath;
-        }
+        //public static void setLogPathFile(ref System.Windows.Forms.TextBox LogPathBox)
+        //{
+        //    LogPathBox.Text = Settings.Option.LogFilePath;
+        //}
         #endregion
         /// <summary> Port settings. </summary>
         public class Port
@@ -33,7 +33,7 @@ namespace Termie
         {
             public static bool StayOnTop = false;
             public static int Interval = 5;
-            public static string LogFilePath= Application.StartupPath+"\\default.xlsx";
+            public static string LogFilePath= Application.StartupPath+"\\default";
             //public enum AppendType
             //{
             //    AppendNothing,
@@ -65,6 +65,8 @@ namespace Termie
             Option.Interval = ini.ReadValue("Option", "Interval", Option.Interval);
 
             Option.LogFilePath = ini.ReadValue("Option", "LogFileName", Option.LogFilePath.ToString());
+            
+            
             //Option.AppendToSend = (Option.AppendType)Enum.Parse(typeof(Option.AppendType), ini.ReadValue("Option", "AppendToSend", Option.AppendToSend.ToString()));
             //Option.HexOutput = bool.Parse(ini.ReadValue("Option", "HexOutput", Option.HexOutput.ToString()));
             //Option.MonoFont = bool.Parse(ini.ReadValue("Option", "MonoFont", Option.MonoFont.ToString()));

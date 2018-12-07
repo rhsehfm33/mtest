@@ -11,12 +11,6 @@ namespace Termie
     /// </summary>
     public class Settings
     {
-        #region lms made this functions
-        public static void setLogPathFile(ref System.Windows.Forms.TextBox LogPathBox)
-        {
-            LogPathBox.Text = Settings.Option.LogFilePath;
-        }
-        #endregion
         /// <summary> Port settings. </summary>
         public class Port
         {

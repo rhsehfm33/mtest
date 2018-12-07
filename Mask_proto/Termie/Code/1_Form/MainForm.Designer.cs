@@ -205,7 +205,7 @@
             this.LogPathBox.Name = "LogPathBox";
             this.LogPathBox.Size = new System.Drawing.Size(443, 25);
             this.LogPathBox.TabIndex = 0;
-            //this.LogPathBox.Text = Settings.Option.LogFilePath;
+            this.LogPathBox.Text = Settings.Option.LogFilePath;
             // 
             // btnLogPath
             // 

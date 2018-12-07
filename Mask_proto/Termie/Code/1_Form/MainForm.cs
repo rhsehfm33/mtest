@@ -25,11 +25,11 @@ namespace Termie
         #region Default
         public MainForm()
         {
+            Settings.Read();
             InitializeComponent();
 
             _bLogging = false;
-            Settings.Read();
-            Settings.setLogPathFile(ref this.LogPathBox);
+  
             TopMost = Settings.Option.StayOnTop;
 
             CommPort com = CommPort.Instance;

@@ -69,7 +69,7 @@ namespace Termie
         {
             RealPacket packet = new RealPacket();
             int idx = 4;
-            for (int i = Packet.size - 1; readBuffer[i] != PacketToken.start; --i, --idx)           // 최적화 필요. 조건문 더 추가해야됨. 현재는 임시방편임.
+            for (int i = Packet.size - 1; i != 0; --i, --idx)           // 최적화 필요. 조건문 더 추가해야됨. 현재는 임시방편임.
             { 
                 switch (idx)
                 {

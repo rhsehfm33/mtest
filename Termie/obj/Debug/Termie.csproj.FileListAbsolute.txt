@@ -1,0 +1,72 @@
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.csproj.ResolveComReference.cache
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.Form1.resources
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.Form2.resources
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.Properties.Resources.resources
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.csproj.GenerateResource.Cache
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.exe
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.pdb
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.MainForm.resources
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.Sample_Design.Form3.resources
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.Sample_Design.Form4.resources
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.Sample_Design.Form5.resources
+D:\Ghong\termie\New_Termie\Termie\Termie.exe.config
+D:\Ghong\termie\New_Termie\Termie\Termie\Termie.exe.config
+D:\Ghong\termie\New_Termie\Termie\Termie\Termie.exe
+D:\Ghong\termie\New_Termie\Termie\Termie\Termie.pdb
+D:\Ghong\termie\New_Termie\Termie\Termie\bin\Termie.exe.config
+D:\Ghong\termie\New_Termie\Termie\Termie\bin\Debug\Termie.exe.config
+D:\Ghong\termie\New_Termie\Termie\Termie\bin\Debug\Termie.exe
+D:\Ghong\termie\New_Termie\Termie\Termie\bin\Debug\Termie.pdb
+D:\Ghong\termie\New_Termie\Termie\Termie\obj\Debug\Termie.csprojResolveAssemblyReference.cache
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\bin\Debug\Termie.exe.config
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\bin\Debug\Termie.exe
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\bin\Debug\Termie.pdb
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.csproj.ResolveComReference.cache
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.MainForm.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.Form1.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.Form2.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.Properties.Resources.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.Sample_Design.Form3.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.Sample_Design.Form4.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.Sample_Design.Form5.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.csproj.GenerateResource.Cache
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.exe
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.pdb
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.csprojResolveAssemblyReference.cache
+D:\Ghong\termie\ServerSource\mtest\Mask_proto\Termie\obj\Debug\Termie.SettingForm.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\bin\Debug\Termie.exe.config
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\bin\Debug\Termie.exe
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\bin\Debug\Termie.pdb
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.csproj.ResolveComReference.cache
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.MainForm.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.SettingForm.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.Form1.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.Form2.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.Properties.Resources.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.Sample_Design.Form3.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.Sample_Design.Form4.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.Sample_Design.Form5.resources
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.csproj.GenerateResource.Cache
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.exe
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.pdb
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\bin\Debug\ZedGraph.dll
+D:\Ghong\termie\ServerSource\mtest\Mask_proto - 복사본\Termie\obj\Debug\Termie.csprojResolveAssemblyReference.cache
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.csprojAssemblyReference.cache
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.csproj.ResolveComReference.cache
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.MainForm.resources
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.SettingForm.resources
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.Form1.resources
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.Form2.resources
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.Properties.Resources.resources
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.Sample_Design.Form3.resources
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.Sample_Design.Form4.resources
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.Sample_Design.Form5.resources
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.csproj.GenerateResource.cache
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.csproj.CoreCompileInputs.cache
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.exe
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.pdb
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\bin\Debug\Termie.exe.config
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\bin\Debug\Termie.exe
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\bin\Debug\Termie.pdb
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\bin\Debug\ZedGraph.dll
+C:\Users\bhy\OneDrive\바탕 화면\mask_test\Ghong\Mask_proto - 복사본 (2)\Termie\obj\Debug\Termie.csproj.CopyComplete

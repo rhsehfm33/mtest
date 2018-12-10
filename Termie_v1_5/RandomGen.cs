@@ -59,6 +59,12 @@ namespace Termie
             _genThread = new Thread(RandomGenerate);
             _genThread.Start();
         }
+        public class RealPacket
+        {
+            public float breath = 0, pressure = 0;
+            public int LRPM = 0, RRPM = 0;
+        }
+
         private void RandomGenerate()
         {
             // 스톱워치로 초당 5번 or Sleep함수로 강제 스탑? or 쓰레드 대기?
@@ -79,7 +85,7 @@ namespace Termie
                 float[] packetValue = new float[4];
                 while (_bKeepAlive)
                 {
-                    if (_bIsGenerating &&sw.ElapsedMilliseconds > 200.0F)
+                    if (_bIsGenerating)// &&sw.ElapsedMilliseconds > 1.0F)
                     {
                         sw.Restart();
                         if (_bZero)

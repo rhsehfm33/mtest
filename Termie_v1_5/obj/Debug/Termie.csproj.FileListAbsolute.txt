@@ -54,3 +54,12 @@ C:\Users\bhy\OneDrive\바탕 화면\mask_test\mtest_tmp\mtest\Termie_v1_5\obj\De
 C:\Users\bhy\OneDrive\바탕 화면\mask_test\mtest_tmp\mtest\Termie_v1_5\obj\Debug\Termie.csproj.CoreCompileInputs.cache
 C:\Users\bhy\OneDrive\바탕 화면\mask_test\mtest_tmp\mtest\Termie_v1_5\obj\Debug\Termie.exe
 C:\Users\bhy\OneDrive\바탕 화면\mask_test\mtest_tmp\mtest\Termie_v1_5\obj\Debug\Termie.pdb
+D:\Ghong\termie\ServerSource\mtest\Termie_v1_5\obj\Debug\Termie.csprojResolveAssemblyReference.cache
+D:\Ghong\termie\ServerSource\mtest\Termie_v1_5\obj\Debug\Termie.AboutBox.resources
+D:\Ghong\termie\ServerSource\mtest\Termie_v1_5\obj\Debug\Termie.Form1.resources
+D:\Ghong\termie\ServerSource\mtest\Termie_v1_5\obj\Debug\Termie.Form2.resources
+D:\Ghong\termie\ServerSource\mtest\Termie_v1_5\obj\Debug\Termie.Form3.resources
+D:\Ghong\termie\ServerSource\mtest\Termie_v1_5\obj\Debug\Termie.Properties.Resources.resources
+D:\Ghong\termie\ServerSource\mtest\Termie_v1_5\obj\Debug\Termie.csproj.GenerateResource.Cache
+D:\Ghong\termie\ServerSource\mtest\Termie_v1_5\bin\Debug\Termie.exe
+D:\Ghong\termie\ServerSource\mtest\Termie_v1_5\bin\Debug\Termie.pdb

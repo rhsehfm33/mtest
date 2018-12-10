@@ -710,23 +710,23 @@ namespace Termie
         /// </summary>
         private void button5_Click(object sender, EventArgs e)
         {
-            string command = comboBox1.Text;
-            comboBox1.Items.Add(comboBox1.Text);
-            comboBox1.Text = "";
-            comboBox1.Focus();
+            //string command = comboBox1.Text;
+            //comboBox1.Items.Add(comboBox1.Text);
+            //comboBox1.Text = "";
+            //comboBox1.Focus();
 
-            if (command.Length > 0)
-            {
-                command = ConvertEscapeSequences(command);
+            //if (command.Length > 0)
+            //{
+            //    command = ConvertEscapeSequences(command);
 
-                CommPort com = CommPort.Instance;
-                com.Send(command);
+            //    CommPort com = CommPort.Instance;
+            //    com.Send(command);
 
-                if (Settings.Option.LocalEcho)
-                {
-                    outputList_Add(command + "\n", sentColor);
-                }
-            }
+            //    if (Settings.Option.LocalEcho)
+            //    {
+            //        outputList_Add(command + "\n", sentColor);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -734,31 +734,31 @@ namespace Termie
         /// </summary>
         private void button6_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.RestoreDirectory = false;
-            dialog.Title = "Select a file";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                String text = System.IO.File.ReadAllText(dialog.FileName);
-                String strExtension = Path.GetExtension(dialog.FileName);
-                // ¿¢¼¿ ±¸ºÐ
-                if (strExtension == ".xls" || strExtension == ".xlsx")
-                {
-                    text = Read_ExcelData(dialog.FileName);
-                    text = "e" + text;
-                }
-                else
-                    text = "n" + text;
+            //OpenFileDialog dialog = new OpenFileDialog();
+            //dialog.RestoreDirectory = false;
+            //dialog.Title = "Select a file";
+            //if (dialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    String text = System.IO.File.ReadAllText(dialog.FileName);
+            //    String strExtension = Path.GetExtension(dialog.FileName);
+            //    // ¿¢¼¿ ±¸ºÐ
+            //    if (strExtension == ".xls" || strExtension == ".xlsx")
+            //    {
+            //        text = Read_ExcelData(dialog.FileName);
+            //        text = "e" + text;
+            //    }
+            //    else
+            //        text = "n" + text;
 
-                CommPort com = CommPort.Instance;
-                com.Send(text);
+            //    CommPort com = CommPort.Instance;
+            //    com.Send(text);
 
-                if (Settings.Option.LocalEcho)
-                {
-                    outputList_Add("SendFile " + dialog.FileName + "," +
-                        text.Length.ToString() + " byte(s)\n", sentColor);
-                }
-            }
+            //    if (Settings.Option.LocalEcho)
+            //    {
+            //        outputList_Add("SendFile " + dialog.FileName + "," +
+            //            text.Length.ToString() + " byte(s)\n", sentColor);
+            //    }
+            //}
         }
 
         /// <summary>

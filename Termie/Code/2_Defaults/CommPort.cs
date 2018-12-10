@@ -87,26 +87,40 @@ namespace Termie
         /// <summary> Get the data and pass it on. </summary>
         private void ReadPort()
         {
+            int offSet = 0;
+            int added = 0;
+            int endIdx = 0;
             Packet SerialIn = new Packet();
+            byte[] packetBytes = new byte[Packet.size];
+            byte[] readBuffer = new byte[_serialPort.ReadBufferSize];
+
             while (_keepReading)
             {
                 if (_serialPort.IsOpen && _bRunning)
                 {
-                    byte[] readBuffer = new byte[_serialPort.ReadBufferSize];
+                    byte[] remainedBytes = new byte[_serialPort.ReadBufferSize];
                     try
                     {
                         RealPacket packet;
+                        added = _serialPort.BytesToRead;
+                        _serialPort.Read(readBuffer, offSet, added);
+                        offSet += added;
+                        
+                        endIdx = SerialIn.getLastIdx(readBuffer, offSet);
+                        if (endIdx == -1)
+                            continue;
+                        Array.Copy(readBuffer, endIdx + 1 - Packet.size, packetBytes, 0, Packet.size);
+                        Array.Copy(readBuffer, endIdx + 1, remainedBytes, 0, offSet - endIdx - 1);
                         // If there are bytes available on the serial port,
                         // Read returns up to "count" bytes, but will not block (wait)
                         // for the remaining bytes. If there are no bytes available
                         // on the serial port, Read will block until at least one byte
                         // is available on the port, up until the ReadTimeout milliseconds
                         // have elapsed, at which time a TimeoutException will be thrown.
-                        int count = _serialPort.Read(readBuffer, 0, _serialPort.ReadBufferSize);
-                        packet = SerialIn.SetData(readBuffer, 0, count - 1);
-                        if (packet == null)
-                            continue;
+                        packet = SerialIn.SetData(packetBytes);
                         DataReceived(packet);
+                        readBuffer = remainedBytes;
+                        offSet = 0;
                     }
                     catch (TimeoutException)
                     {

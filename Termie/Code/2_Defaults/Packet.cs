@@ -38,7 +38,7 @@ namespace Termie
     {
 
         public float[] m_DataIn = new float[mDataSize.size];
-
+        public const int size = 14;
         public Packet() { }
 
         public float ConvertBreathToFloat(byte[] startbyte)
@@ -51,53 +51,47 @@ namespace Termie
 
             return breathValue / 10000.0f;
         }
-
-        public RealPacket SetData(byte[] bytes, int index, int count)
+        public int getLastIdx(byte[] bufferRead, int offSet)
+        {
+            for(int i = offSet - 1; i >= 0; --i)
+            {
+                if(bufferRead[i] == PacketToken.end)
+                {
+                    if (i + 1 >= size)
+                        return i;
+                    else
+                        break;
+                }
+            }
+            return -1;
+        }
+        public RealPacket SetData(byte[] readBuffer)
         {
             RealPacket packet = new RealPacket();
             int idx = 4;
-            for (; count >= 0 && idx >= 0; count--)           // 최적화 필요. 조건문 더 추가해야됨. 현재는 임시방편임.
-            {
-                if (bytes[count] == PacketToken.end)
+            for (int i = Packet.size - 1; readBuffer[i] != PacketToken.start; --i, --idx)           // 최적화 필요. 조건문 더 추가해야됨. 현재는 임시방편임.
+            { 
+                switch (idx)
                 {
-                    if (count < 13)
-                        return null;
-                    idx--;
-                    continue;
-                }
-                else if (bytes[count] == PacketToken.start)
-                {
-                    break;
-                }
-
-                else
-                {
-                    switch (idx)
-                    {
-                        case 3:
-                            packet.RRPM = bytes[count - 1] << 8 | bytes[count];        //최적화 필요.
-                            count--;
-                            idx--;
-                            break;
-                        case 2:
-                            packet.LRPM = bytes[count - 1] << 8 | bytes[count];
-                            count--;
-                            idx--;
-                            break;
-                        case 1:
-                            packet.pressure = (bytes[count - 3] << 24 | bytes[count - 2]
-                                << 16 | bytes[count - 1] << 8 | bytes[count]) / 1000f;
-                            count -= 3;
-                            idx--;
-                            break;
-                        case 0:
-                            byte[] startBytes = new byte[4];
-                            Buffer.BlockCopy(bytes, count - 3, startBytes, 0, 4);
-                            packet.breath = ConvertBreathToFloat(startBytes);
-                            idx--;
-                            break;
-                    }
-
+                    case 3:
+                        packet.RRPM = readBuffer[i - 1] << 8 | readBuffer[i];        //최적화 필요.
+                        i--;
+                        break;
+                    case 2:
+                        packet.LRPM = readBuffer[i - 1] << 8 | readBuffer[i];
+                        i--;
+                        break;
+                    case 1:
+                        packet.pressure = (readBuffer[i - 3] << 24 | readBuffer[i - 2]
+                            << 16 | readBuffer[i - 1] << 8 | readBuffer[i]) / 1000f;
+                        i -= 3;
+                        break;
+                    case 0:
+                        byte[] startBytes = new byte[4];
+                        Buffer.BlockCopy(readBuffer, i - 3, startBytes, 0, 4);
+                        packet.breath = ConvertBreathToFloat(startBytes);
+                        i = 1;
+                        break;
                 }
             }
             return packet;
